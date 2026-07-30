@@ -1,47 +1,49 @@
-# Stock Price Predictor
+# StocksPredictor
 
-An AI-powered stock price prediction application using machine learning and technical analysis.
+Przewidywanie cen akcji z użyciem machine learningu i analizy technicznej.
 
-## Setup
+## Co to robi
 
-1. Clone the repository:
+Aplikacja pobiera dane giełdowe z Polygon.io, liczy wskaźniki techniczne (RSI, średnie kroczące)
+i próbuje przewidzieć przyszłe ceny używając modelu LSTM (sztuczna sieć neuronowa).
+
+Wyniki pokazuje na wykresach w przeglądarce.
+
+## Uruchomienie
+
 ```bash
-git clone https://github.com/yourusername/StocksPredictor.git
-cd StocksPredictor
-```
-
-2. Install dependencies:
-```bash
+# 1. zainstaluj zależności
 pip install -r requirements.txt
-```
 
-3. Set up your API key:
-   - Get a free API key from [Polygon.io](https://polygon.io/)
-   - Create a `.env` file from the example:
-     ```bash
-     cp .env.example .env
-     ```
-   - Edit `.env` and add your API key
-   - Create a Streamlit secrets file:
-     ```bash
-     mkdir -p .streamlit
-     cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-     ```
-   - Edit `.streamlit/secrets.toml` and add your API key
+# 2. dodaj klucz API do Polygon.io
+echo "POLYGON_API_KEY=twoj_klucz" > .env
 
-4. Run the application:
-```bash
+# 3. uruchom
 streamlit run app.py
 ```
 
-## Features
+Darmowy klucz API dostaniesz na [polygon.io](https://polygon.io/).
 
-- Real-time stock data from Polygon.io
-- Advanced technical analysis
-- AI-powered price predictions
-- Interactive charts and visualizations
-- Technical indicators (RSI, Moving Averages)
+## Uwaga
 
-## Security Note
+Model trenuje się od nowa przy każdej predykcji — to trwa kilka-kilkanaście sekund.
+Nie zapisuje wytrenowanego modelu między uruchomieniami.
 
-This project uses environment variables and Streamlit secrets for API key management. Never commit your actual API keys to GitHub. The `.env` and `.streamlit/secrets.toml` files are included in `.gitignore` to prevent accidental commits. 
+To nie jest porada inwestycyjna. Przewidywania są symulacją, nie faktem.
+
+## Z czego korzysta
+
+| Biblioteka | Do czego |
+|---|---|
+| streamlit | UI w przeglądarce |
+| yfinance | dane giełdowe z Yahoo Finance |
+| polygon-api-client | alternatywne źródło danych |
+| tensorflow / keras | model LSTM |
+| plotly | wykresy |
+| pandas + numpy | obróbka danych |
+| scikit-learn | skalowanie danych |
+| python-dotenv | klucz API z pliku .env |
+
+## Licencja
+
+Brak — project publiczny, używasz na własne ryzyko.
